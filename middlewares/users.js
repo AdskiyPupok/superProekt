@@ -4,12 +4,10 @@
 const users = require('../models/user');
 
 const findAllUsers = async (req, res, next) => {
-  // Используем метод populate для загрузки данных
-  // из моделей categories и users по их id
-  const result = await users.find({}).populate("categories").populate("users");
-  console.log(result);
+    // По GET-запросу на эндпоинт /users найдём все документы пользователей
+  req.usersArray = await users.find({});
   next();
-};
+}
 
 // Экспортируем функцию поиска всех пользователей
 module.exports = findAllUsers;

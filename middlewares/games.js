@@ -4,10 +4,10 @@
 const games = require("../models/game");
 
 const findAllGames = async (req, res, next) => {
-  // Используем метод populate для загрузки данных
-  // из моделей categories и users по их id
-  const result = await games.find({}).populate("categories").populate("users");
-  console.log(result);
+  // По GET-запросу на эндпоинт /games найдём все документы категорий
+  // и с помощью метода populate запросим данные о связанных
+  // категориях и пользователях
+  req.gamesArray = await games.find({}).populate("categories").populate("users");
   next();
 };
 
