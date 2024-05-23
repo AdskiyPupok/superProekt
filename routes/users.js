@@ -4,9 +4,18 @@ const usersRouter = require('express').Router();
 // Импортируем вспомогательные функции
 const findAllUsers = require('../middlewares/users');
 const sendAllUsers = require('../controllers/users');
-
+const sendUserCreated = require('../controllers/users');
+const createUser = require('../middlewares/users')
 // Обрабатываем GET-запрос с роутом '/users'
 usersRouter.get('/users', findAllUsers, sendAllUsers);
+
+usersRouter.post(
+    "/users",
+    findAllUsers,
+    createUser,
+    sendUserCreated
+  );
+
 
 // Экспортируем роут для использования в приложении — app.js
 module.exports = usersRouter;
